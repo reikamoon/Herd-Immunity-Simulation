@@ -37,7 +37,6 @@ class Simulation(object):
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
         self.logger = logger
-        self._create_population(self, )
         self.logger = None
         self.population = [] # List of Person objects
         self.pop_size = pop_size # Int
