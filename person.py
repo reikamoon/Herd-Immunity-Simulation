@@ -19,7 +19,6 @@ class Person(object):
         self.is_alive = True  # boolean
         self.is_vaccinated = None  # boolean
         self.infection = None  # Virus object or None
-        self.virus = Virus('name', 0, 0)
 
     def did_survive_infection(self):
         ''' Generate a random number and compare to virus's mortality_rate.
@@ -30,13 +29,13 @@ class Person(object):
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
         mortality_rate = randint(0, 100)
-        if not self.infection == None:
-            if mortality_rate > self.virus.mortality_rate:
+        if self.infection == None:
+            if mortality_rate > self.infection.mortality_rate:
                 self.is_alive = False
             else:
                 self.is_vaccinated = True
                 self.infection = None        
-        return self.is_alive and self.is_vaccinated and self.infection
+        return self.is_alive == True
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():
