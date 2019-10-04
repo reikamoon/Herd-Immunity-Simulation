@@ -55,7 +55,6 @@ def test_not_vacc_person_instantiation():
     # TODO: complete your own assert statements that test
     # the values at each attribute
     # assert ...
-    pass
 
 
 def test_sick_person_instantiation():
@@ -70,7 +69,6 @@ def test_sick_person_instantiation():
     # TODO: complete your own assert statements that test
     # the values at each attribute
     # assert ...
-    pass
 
 
 def test_did_survive_infection():
