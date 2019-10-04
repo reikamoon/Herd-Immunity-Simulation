@@ -49,6 +49,9 @@ def test_vacc_person_instantiation():
 
 def test_not_vacc_person_instantiation():
     person = Person(2, False)
+    assert person._id == 2
+    assert person.is_alive is True
+    assert person.is_vaccinated is False
     # TODO: complete your own assert statements that test
     # the values at each attribute
     # assert ...
