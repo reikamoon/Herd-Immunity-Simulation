@@ -23,8 +23,9 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        metadata = (f"Population size ={pop_size}\nVaccine percentage = {vacc_percentage}\nVirus name = {virus_name}\nMortality Rate = {mortality_rate}\nRepoduction Rate = {basic_repro_num}\n")
+        metadata = (f"Population size ={pop_size}/nVaccine percentage = {vacc_percentage}/nVirus name = {virus_name}/nMortality Rate = {mortality_rate}/nRepoduction Rate = {basic_repro_num}/n")
         text_file = open(self.file_name, "w")
+        text_file.append(self.file_name, "a")
         text_file.write(metadata)
         pass
 
