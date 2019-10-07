@@ -60,6 +60,12 @@ class Logger(object):
             log_file = open("log.txt", "a+")
             log_file.write("{0} cannot be infected, they are vaccinated.".format(person.id))
             person.infection = False
+            
+        if random_person_sick == True and person.infection != None
+           print("{0} is already infected!".format(person.id))
+           did_infect = False
+           log_file = open("log.txt", "a+")
+           log_file.write("{0} is already infected!".format(person.id))
         pass
 
     def log_infection_survival(self, person, did_die_from_infection):
