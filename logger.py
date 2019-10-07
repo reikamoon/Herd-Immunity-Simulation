@@ -47,6 +47,19 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
+        if random_person_sick == True and person.infection == None and person.is_vaccinated == False:
+            print("{0} infects {1}".format(random_person.id, person.id))
+            did_infect = True
+            log_file = open("log.txt", "a+")
+            log_file.write("{0} infects {1}".format(random_person.id, person.id))
+            person.infection = True
+
+        if random_person_sick == True and person.infection == None and person.is_vaccinated == True:
+            print("{0} cannot be infected, they are vaccinated.".format(person.id))
+            did_infect = False
+            log_file = open("log.txt", "a+")
+            log_file.write("{0} cannot be infected, they are vaccinated.".format(person.id))
+            person.infection = False
         pass
 
     def log_infection_survival(self, person, did_die_from_infection):
