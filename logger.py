@@ -28,8 +28,7 @@ class Logger(object):
         f"Virus name = {virus_name}\n" + 
         f"Mortality Rate = {mortality_rate}\n" + 
         f"Repoduction Rate = {basic_repro_num}\n")
-        text_file = open(self.file_name, "w")
-        text_file.append(self.file_name, "a")
+        text_file = open(self.file_name, "w+")
         text_file.write(metadata)
         pass
 
