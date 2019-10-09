@@ -30,7 +30,6 @@ class Logger(object):
         f"Repoduction Rate = {basic_repro_num}\n")
         text_file = open(self.file_name, "w+")
         text_file.write(metadata)
-        pass
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -61,12 +60,11 @@ class Logger(object):
             log_file.write("{0} cannot be infected, they are vaccinated.".format(person.id))
             person.infection = False
             
-        if random_person_sick == True and person.infection != None
+        if random_person_sick == True and person.infection != None:
            print("{0} is already infected!".format(person.id))
            did_infect = False
            log_file = open("log.txt", "a+")
            log_file.write("{0} is already infected!".format(person.id))
-        pass
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -78,17 +76,17 @@ class Logger(object):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        if person.did_die_from_infection == True
+        if person.did_die_from_infection == True:
             print("{0} died from infection.".format(person.id))
             print(self.resolve_infection())
             log_file = open("log.txt", "a+")
             log_file.write(self.resolve_infection())
-        if person.did_die_from_infection == False
+
+        if person.did_die_from_infection == False:
             print("{0} survived from infection."format(person.id))
             print(self.resolve_infection())
             log_file = open("log.txt", "a+")
             log_file.write(self.resolve_infection())
-        pass
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:

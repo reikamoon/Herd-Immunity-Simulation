@@ -36,7 +36,8 @@ class Person(object):
             else:
                 self.is_vaccinated = True
                 self.infection = None
-        return self.is_alive == True
+        else:
+            return self.is_alive == True
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():
