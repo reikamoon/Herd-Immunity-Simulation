@@ -105,7 +105,6 @@ class Simulation(object):
             self.time_step
             time_step_counter += 1
             print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
-        pass
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
@@ -120,7 +119,10 @@ class Simulation(object):
                 increment interaction counter by 1.
             '''
         # TODO: Finish this method.
-        pass
+        infected = self.get_infected()
+        for person in infected:
+            if self.current_infected == False:
+                infected.append(person)
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an

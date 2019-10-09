@@ -54,10 +54,10 @@ def test_not_vacc_person_instantiation():
     assert person._id == 2
     assert person.is_alive is True
     assert person.is_vaccinated is False
+    assert person.infection is None
     # TODO: complete your own assert statements that test
     # the values at each attribute
     # assert ...
-
 
 def test_sick_person_instantiation():
     # Create a Virus object to give a Person object an infection
@@ -96,4 +96,3 @@ def test_did_survive_infection():
         # TODO: Write your own assert statements that test
         # the values of each attribute for a Person who did not survive
         # assert ...
-        pass
