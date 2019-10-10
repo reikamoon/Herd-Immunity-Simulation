@@ -129,6 +129,18 @@ class Simulation(object):
                 increment interaction counter by 1.
             '''
         # TODO: Finish this method.
+        for infected in self.population:
+            if infected.infection != None and infection.is_alive == True:
+                interaction = 0
+                while interaction < 100:
+                    ram_num = (0, self.pop_size -1)
+                    if self.popluation.is_alive:
+
+        for infected in self.population:
+            if infected.infection != None and infection.is_alive == True:
+                interaction = 0
+                if surived_infection:
+                    self.loggerlog_infection_survival
         pass
 
     def interaction(self, person, random_person):
