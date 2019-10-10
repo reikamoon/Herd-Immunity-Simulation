@@ -138,7 +138,6 @@ class Simulation(object):
             should_continue = self._simulation_should_continue()
             time_step_counter += 1
 
-            print("The simulation has ended after {time_step_counter} turns.".format(time_step_counter))
             survived = 0
             perished = 0
             for person in self.population:
@@ -147,8 +146,7 @@ class Simulation(object):
                 else:
                     perished +=1
             #Padyn, enter the print statements here!
-            print("")
-            print("")
+            print("The simulation has ended after {time_step_counter} turns.".format(time_step_counter))
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
