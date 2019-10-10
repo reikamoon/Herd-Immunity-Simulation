@@ -3,7 +3,7 @@ Population Size: 2,500
 Vaccinated %: .25
 Mortality Rate: .40
 Reproductive Rate: .5
-Virus Name: Fortnite
+Virus Name: Smallpox
 
 2.
 
