@@ -49,7 +49,7 @@ class Simulation(object):
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(virus.name, pop_size, vacc_percentage, initial_infected)
         self.newly_infected = []
 
-        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus_name, self.mortality_rate, self.basic_repro_num)
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus_name, self.mortality_rate, self.virus_repro_rate)
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -70,7 +70,7 @@ class Simulation(object):
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
         population = []
-[--------------------------Add Code Here----------------------]
+
         return population
 
     def _simulation_should_continue(self):
@@ -120,10 +120,8 @@ class Simulation(object):
                 increment interaction counter by 1.
             '''
         # TODO: Finish this method.
-        infected = self.get_infected()
-        for person in infected:
-            if self.current_infected == False:
-                infected.append(person)
+        for person in self.population:
+            
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
@@ -149,14 +147,19 @@ class Simulation(object):
             #     than repro_rate, random_person's ID should be appended to
             #     Simulation object's newly_infected array, so that their .infected
             #     attribute can be changed to True at the end of the time step.
-        # TODO: Call slogger method during this method.
+        # TODO: Call logger method during this method.
         if random_person.is_vaccinated == True:
-            infected = False
+            self.logger.log_interaction(random, random_person)
         elif random_person.infection != None:
-            infected = False
+            self.logger.log_interaction(random, random_person)
         else:
-[------------------------Add Code Here------------------------]
-        pass
+            ran_num = random.randint(0,1)
+            if ran_num() <= self.virus.repro_rate:
+                self.logger.log_interaction(random, random_person)
+                self.newly_infected.append(random_person._id)
+            else:
+                self.logger.log_interaction(random, random_person)
+                
 
     def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
