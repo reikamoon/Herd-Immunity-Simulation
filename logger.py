@@ -84,7 +84,7 @@ class Logger(object):
             log_file.write(self.resolve_infection())
 
         if person.did_die_from_infection == False:
-            print("{0} survived from infection."format(person.id))
+            print("{0} survived from infection.".format(person.id))
             print(self.resolve_infection())
             log_file = open("log.txt", "a+")
             log_file.write(self.resolve_infection())
