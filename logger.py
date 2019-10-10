@@ -65,6 +65,7 @@ class Logger(object):
            did_infect = False
            log_file = open("log.txt", "a+")
            log_file.write("{0} is already infected!".format(person.id))
+           log_file.close()
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
