@@ -1,8 +1,8 @@
 1. The inputs I gave were 
 Population Size: 2,500
-Vaccinated %: .25
-Mortality Rate: .40
-Reproductive Rate: .5
+Vaccinated %: 0.25
+Mortality Rate: 0.50
+Reproductive Rate: 0.06
 Virus Name: Smallpox
 
 2.
