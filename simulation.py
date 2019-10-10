@@ -49,6 +49,10 @@ class Simulation(object):
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
             virus_name, pop_size, vacc_percentage, initial_infected)
         self.newly_infected = []
+        self.dead = 0
+        self.total_deaths = 0
+        #People Alive Variable
+        self.alive = 0
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -106,16 +110,41 @@ class Simulation(object):
         # TODO: Keep track of the number of time steps that have passed.
         # HINT: You may want to call the logger's log_time_step() method at the end of each time step.
         # TODO: Set this variable using a helper
-        time_step_counter = 0
-        should_continue = None
-
-        while should_continue:
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
-            time_step_continue += 1
+        self.logger.write_metadata(pop_size, vacc_percentage, virus.name, virus.mortality_rate)
+        time_step_counter = 0
+        should_continue = True
+        self.population = self._create_population(self.initial_infected, self.pop_size, self.vacc_percentage)
+
+        while should_continue:
             self.time_step()
-            self.logger.log_time_step(time_should_number)
+        for people in self.population:
+            if not people.infection == None:
+                if not self.logger.log_infection_survival(people):
+                    self.dead -= 1
+                    self.total_deaths += 1
+                    self.alive -= 1
+                else:
+                    self.vaccinated += 1
+
+            self._infect_newly_infected()
+            self.logger.log_time_step(time_step_counter, self.current_infected, self.total_infected, self.total_dead)
+
+            should_continue = self._simulation_should_continue()
+            time_step_counter += 1
+
             print("The simulation has ended after {time_step_counter} turns.".format(time_step_counter))
+            survived = 0
+            perished = 0
+            for person in self.population:
+                if person.is_alive:
+                    survived +=1
+                else:
+                    perished +=1
+            #Padyn, enter the print statements here!
+            print("")
+            print("")
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
