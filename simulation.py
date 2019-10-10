@@ -94,7 +94,6 @@ class Simulation(object):
             return False
         else:
             return True
-        pass
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
@@ -113,8 +112,10 @@ class Simulation(object):
         while should_continue:
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
+            time_step_continue += 1
+            self.time_step()
+            self.logger.log_time_step(time_should_number)
             print("The simulation has ended after {time_step_counter} turns.".format(time_step_counter))
-        pass
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
@@ -141,7 +142,6 @@ class Simulation(object):
                 interaction = 0
                 if surived_infection:
                     self.loggerlog_infection_survival
-        pass
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
@@ -177,7 +177,6 @@ class Simulation(object):
             if ran_num() <= self.virus.repro_rate:
                 self.logger.log_interaction(random, random_person)
                 self.newly_infected.append(random_person._id)
-        pass
 
     def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
