@@ -121,7 +121,7 @@ class Simulation(object):
             '''
         # TODO: Finish this method.
         for person in self.population:
-            
+            if
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
