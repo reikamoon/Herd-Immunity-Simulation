@@ -152,6 +152,15 @@ class Simulation(object):
             #     Simulation object's newly_infected array, so that their .infected
             #     attribute can be changed to True at the end of the time step.
         # TODO: Call slogger method during this method.
+        if random_person.is_vaccinated == True:
+            self.logger.log_interaction(random, random_person)
+        elif random_person.infection != None:
+            self.logger.log_interaction(random, random_person)
+        else:
+            ran_num = random.randint(0,1)
+            if ran_num() <= self.virus.repro_rate:
+                self.logger.log_interaction(random, random_person)
+                self.newly_infected.append(random_person._id)
         pass
 
     def _infect_newly_infected(self):
