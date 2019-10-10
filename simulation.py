@@ -1,7 +1,7 @@
 import random, sys
 random.seed(42)
 from person import Person
-from logger import Logger
+from logger import *
 from virus import Virus
 
 
@@ -137,11 +137,20 @@ class Simulation(object):
                     ram_num = (0, self.pop_size -1)
                     if self.popluation.is_alive:
 
+<<<<<<< HEAD
         for infected in self.population:
             if infected.infection != None and infection.is_alive == True:
                 interaction = 0
                 if surived_infection:
                     self.loggerlog_infection_survival
+=======
+                        for infected in self.population:
+                            if infected.infection != None and infection.is_alive == True:
+                                interaction = 0
+                                if surived_infection:
+                                    self.loggerlog_infection_survival
+        pass
+>>>>>>> d04cdf4991ef2f6cf12c0efebc602f5cb3de2e1b
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
