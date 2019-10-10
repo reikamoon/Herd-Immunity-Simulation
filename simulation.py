@@ -170,8 +170,6 @@ class Simulation(object):
             self.total_infected += 1
 
         self.newly_infected.clear()
-        pass
-
 
 if __name__ == "__main__":
     params = sys.argv[1:]
