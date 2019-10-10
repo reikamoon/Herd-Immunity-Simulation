@@ -50,6 +50,8 @@ class Simulation(object):
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(virus.name, pop_size, vacc_percentage, initial_infected)
         self.newly_infected = []
 
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus_name, self.mortality_rate, self.basic_repro_num)
+
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
             Args:
@@ -151,7 +153,7 @@ class Simulation(object):
         # TODO: Call slogger method during this method.
         if random_person_is_vaccinated:
             self.logger.log_interaction(person, random_person)
-        
+
         elif random_person.infection != None:
             self.logger.log_interaction(person, random_person)
 
