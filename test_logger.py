@@ -1,7 +1,7 @@
 import unittest
-from virus import Virus
-from person import Person
-from logger import Logger
+from virus import *
+from person import *
+from logger import *
 
 
 class Test(unittest.TestCase):
