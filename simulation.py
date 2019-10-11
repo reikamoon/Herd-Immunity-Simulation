@@ -82,7 +82,6 @@ class Simulation(object):
         for i in range(vaccinated, infected):
             person = Person(i, False, virus)
             self.population.append(person)
-            print("infected")
         for i in range(infected, self.pop_size):
             person = Person(i, False)
             self.population.append(person)
@@ -97,7 +96,7 @@ class Simulation(object):
                 bool: True for simulation should continue, False if it should end.
         '''
         # TODO: Complete this helper method.  Returns a Boolean.
-        for person in self.population:    
+        for person in self.population:
             if person.is_alive == True:
                 return True
             else:
@@ -120,7 +119,6 @@ class Simulation(object):
         time_step_counter = 0
         should_continue = True
         self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
-        
 
         while should_continue:
             self.time_step()
@@ -147,7 +145,6 @@ class Simulation(object):
         # TODO: Finish this method.
         for person in self.population:
             if person.infection != None and person.is_alive == True:
-                print("had interaction")
                 interaction = 0
                 while interaction < 100:
                     random_person = (0, self.pop_size -1)

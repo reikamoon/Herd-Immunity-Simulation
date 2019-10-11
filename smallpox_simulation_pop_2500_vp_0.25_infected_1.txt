@@ -1,5 +1,0 @@
-Population size =2500
-Vaccine percentage = 0.25
-Virus name = smallpox
-Mortality Rate = 0.15
-Repoduction Rate = 0.06
