@@ -18,8 +18,7 @@ class Person(object):
         self._id = _id  # int
         self.is_alive = True  # boolean
         self.is_vaccinated = is_vaccinated  # boolean
-        self.infection = None  # Virus object or None
-        self.virus = Virus('name', 0, 0) #Virus
+        self.infection = infection  # Virus object or None
 
     def did_survive_infection(self):
         ''' Generate a random number and compare to virus's mortality_rate.
@@ -29,13 +28,15 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        mortality_rate = randint(0, 100)
+        mortality_rate = random.random()
         if self.infection != None:
-            if mortality_rate > self.infection.mortality_rate:
+            if mortality_rate < self.infection.mortality_rate:
                 self.is_alive = False
+                return False
             else:
                 self.is_vaccinated = True
                 self.infection = None
+                return True
         else:
             return self.is_alive == True
 
