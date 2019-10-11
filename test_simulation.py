@@ -6,6 +6,15 @@ from simulation import Simulation
 from logger import Logger
 
 class Test(unittest.TestCase):
+    def test__init__(self):
+        virus = Virus("smallpox", 0.06, 0.15)
+        sim = Simulation(100, .9, virus, 1)
+   
+        assert sim.pop_size == 100
+        assert sim.vacc_percentage == .99
+        assert sim.virus.name == "smallpox"
+        assert sim.initial_infected == 1
+
     def test_create_population(self):
         virus = Virus("small pox", 0.06, 0.15)
         simulation = Simulation(100, 0.99, virus, 1)
