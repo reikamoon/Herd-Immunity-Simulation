@@ -1,12 +1,12 @@
 1. The inputs I gave were 
-Population Size: 2,500
+Population Size: 100
 Vaccinated %: 0.25
 Mortality Rate: 0.50
 Reproductive Rate: 0.06
 Virus Name: Smallpox
 
-2. 100% became infected before the virus burned out.
+2. 60% became infected before the virus burned out.
 
-3. 100% died from the virus.
+3. 20% died from the virus.
 
-4. No one was saved.
+4. 20 people were saved by the vaccination.
