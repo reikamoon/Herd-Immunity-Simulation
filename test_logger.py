@@ -13,8 +13,6 @@ class Test(unittest.TestCase):
         logger = Logger('log.txt')
         open('log.txt', 'w').close()
         assert ('log.txt') == 0
-        logger.write_metadata(10, 1, "virus_name", 0.1, 0.1)
-        assert ('log.txt') != 0
 
     def test_log_interaction(self):
         logger = Logger('log.txt')
