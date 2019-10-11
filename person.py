@@ -30,7 +30,7 @@ class Person(object):
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
         mortality_rate = randint(0, 100)
-        if self.infection == None:
+        if self.infection != None:
             if mortality_rate > self.infection.mortality_rate:
                 self.is_alive = False
             else:

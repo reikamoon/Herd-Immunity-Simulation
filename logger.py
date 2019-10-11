@@ -23,13 +23,14 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        metadata = (f"Population size ={pop_size}\n" + 
-        f"Vaccine percentage = {vacc_percentage}\n" + 
-        f"Virus name = {virus_name}\n" + 
-        f"Mortality Rate = {mortality_rate}\n" + 
-        f"Repoduction Rate = {basic_repro_num}\n")
-        text_file = open(self.file_name, "w")
+        text_file = open(self.file_name, "w+")
+        metadata = (f"Population size: {pop_size}\n" + \
+        f"Vaccine percentage: {vacc_percentage}\n" + 
+        f"Virus name: {virus_name}\n" + 
+        f"Mortality Rate: {mortality_rate}\n" + 
+        f"Repoduction Rate: {basic_repro_num}\n")
         text_file.write(metadata)
+        text_file.close()
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -46,24 +47,24 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
+        log_file = open("self.file_name", "a")
         if random_person_sick == True and person.infection == None and person.is_vaccinated == False:
             print("{0} infects {1}".format(random_person.id, person.id))
             did_infect = True
-            log_file = open("self.file_name", "a")
             log_file.write("{0} infects {1}".format(random_person.id, person.id))
             person.infection = True
-
+        
+        log_file = open("self.file_name", "a")
         if random_person_sick == True and person.infection == None and person.is_vaccinated == True:
             print("{0} cannot be infected, they are vaccinated.".format(person.id))
             did_infect = False
-            log_file = open("self.file_name", "a")
             log_file.write("{0} cannot be infected, they are vaccinated.".format(person.id))
             person.infection = False
-            
+        
+        log_file = open("self.file_name", "a")
         if random_person_sick == True and person.infection != None:
            print("{0} is already infected!".format(person.id))
            did_infect = False
-           log_file = open("self.file_name", "a")
            log_file.write("{0} is already infected!".format(person.id))
            log_file.close()
 
@@ -77,15 +78,15 @@ class Logger(object):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        if person.did_die_from_infection == True:
-            print("{0} died from infection.".format(person.id))
+        if person.did_survive_infection() == True:
+            print("{0} died from infection.".format(person._id))
             log_file = open("log.txt", "a")
-            log_file.write("{0} died from infection.".format(person.id))
+            log_file.write("{0} died from infection.".format(person._id))
 
-        if person.did_die_from_infection == False:
-            print("{0} survived from infection.".format(person.id))
+        if person.did_survive_infection() == False:
+            print("{0} survived from infection.".format(person._id))
             log_file = open(self.file_name, "a+")
-            log_file.write("{0} survived from infection.".format(person.id))
+            log_file.write("{0} survived from infection.".format(person._id))
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:

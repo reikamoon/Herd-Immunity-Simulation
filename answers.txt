@@ -5,8 +5,8 @@ Mortality Rate: 0.50
 Reproductive Rate: 0.06
 Virus Name: Smallpox
 
-2.
+2. % became infected before the virus burned out.
 
-3.
+3. % died from the virus.
 
-4.
+4. 
