@@ -1,7 +1,7 @@
 import random, sys
 random.seed(42)
 from person import Person
-from logger import *
+from logger import Logger
 from virus import Virus
 
 
@@ -13,6 +13,8 @@ class Simulation(object):
     population that are vaccinated, the size of the population, and the amount of initially
     infected people in a population are all variables that can be set when the program is run.
     '''
+    #    sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
+
     def __init__(self, pop_size, vacc_percentage, virus, initial_infected=1):
         ''' Logger object logger records all events during the simulation.
         Population represents all Persons in the population.
@@ -36,7 +38,7 @@ class Simulation(object):
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
-        self.logger = None
+        self.logger = Logger("log.txt")
         self.population = [] # List of Person objects
         self.pop_size = pop_size # Int
         self.next_person_id = 0 # Int
@@ -78,6 +80,7 @@ class Simulation(object):
         # the correct intial vaccination percentage and initial infected.
         vaccinated = int(self.pop_size * self.vacc_percentage)
         infected = self.initial_infected + vaccinated
+        self.population = []
         for i in range(0, vaccinated):
             person = Person(i, True, None)
             self.population.append(person)
@@ -98,10 +101,12 @@ class Simulation(object):
                 bool: True for simulation should continue, False if it should end.
         '''
         # TODO: Complete this helper method.  Returns a Boolean.
-        if len(self.get_infected()) == 0:
-            return False
-        else:
-            return True
+        for person in self.population:    
+            if person.is_alive == True:
+                return True
+            else:
+                return False
+
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
@@ -116,24 +121,23 @@ class Simulation(object):
         # TODO: Set this variable using a helper
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
-        self.logger.write_metadata(pop_size, vacc_percentage, virus.name, virus.mortality_rate)
         time_step_counter = 0
         should_continue = True
-        self.population = self._create_population(self.initial_infected, self.pop_size, self.vacc_percentage)
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
+        
 
         while should_continue:
             self.time_step()
-        for people in self.population:
-            if not people.infection == None:
-                if not self.logger.log_infection_survival(people):
+           
+            for person in self.population:
+                self.logger.log_time_step(time_step_counter)
+
+                if not self.logger.log_infection_survival(person, person.did_survive_infetion()):
                     self.dead -= 1
                     self.total_deaths += 1
                     self.alive -= 1
-                else:
-                    self.vaccinated += 1
 
             self._infect_newly_infected()
-            self.logger.log_time_step(time_step_counter, self.current_infected, self.total_infected, self.total_dead)
 
             should_continue = self._simulation_should_continue()
             time_step_counter += 1
@@ -160,28 +164,18 @@ class Simulation(object):
             3. Otherwise call simulation.interaction(person, random_person) and
                 increment interaction counter by 1.
             '''
+            #self.population = self._create_population(self.initial_infected)
         # TODO: Finish this method.
-        for infected in self.population:
-            if infected.infection != None and infection.is_alive == True:
+        for person in self.population:
+            if person.infection != self.virus and person.is_alive == True:
                 interaction = 0
                 while interaction < 100:
-                    ram_num = (0, self.pop_size -1)
-                    if self.popluation.is_alive:
-
-<<<<<<< HEAD
-        for infected in self.population:
-            if infected.infection != None and infection.is_alive == True:
-                interaction = 0
-                if surived_infection:
-                    self.loggerlog_infection_survival
-=======
-                        for infected in self.population:
-                            if infected.infection != None and infection.is_alive == True:
-                                interaction = 0
-                                if surived_infection:
-                                    self.loggerlog_infection_survival
-        pass
->>>>>>> d04cdf4991ef2f6cf12c0efebc602f5cb3de2e1b
+                    random_person = (0, self.pop_size -1)
+            if person.is_alive:
+                self.interaction(person, random_person)
+                nteractions += 1
+                    
+        self.logger.log_infection_survival
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
@@ -246,6 +240,6 @@ if __name__ == "__main__":
         initial_infected = 1
 
     virus = Virus(virus_name, repro_num, mortality_rate)
-    sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
+    sim = Simulation(pop_size, vacc_percentage, virus, initial_infected)
 
     sim.run()
