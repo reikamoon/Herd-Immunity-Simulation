@@ -38,7 +38,10 @@ class Simulation(object):
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
+<<<<<<< HEAD
         self.logger = Logger("log.txt")
+=======
+>>>>>>> fdf6de823545830749567d488ad702f30dfcdc6d
         self.population = [] # List of Person objects
         self.pop_size = pop_size # Int
         self.next_person_id = 0 # Int
@@ -50,15 +53,9 @@ class Simulation(object):
         self.total_dead = 0 # Int
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
             virus_name, pop_size, vacc_percentage, initial_infected)
+        self.logger = Logger(self.file_name)
         self.newly_infected = []
-        self.dead = 0
-        self.total_deaths = 0
-        #People Alive Variable
-        self.alive = 0
-        
-        self.logger.write_metadata(self.pop_size, self.vacc_percentage,
-                                   self.virus.name, self.virus.mortality_rate,
-                                   self.virus.repro_rate)
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -170,12 +167,32 @@ class Simulation(object):
             if person.infection != self.virus and person.is_alive == True:
                 interaction = 0
                 while interaction < 100:
+<<<<<<< HEAD
                     random_person = (0, self.pop_size -1)
             if person.is_alive:
                 self.interaction(person, random_person)
                 nteractions += 1
                     
         self.logger.log_infection_survival
+=======
+                    ram_num = (0, self.pop_size -1)
+                    if self.population.is_alive:
+
+<<<<<<< HEAD
+        for infected in self.population:
+            if infected.infection != None and infection.is_alive == True:
+                interaction = 0
+                if survived_infection:
+                    self.loggerlog_infection_survival
+=======
+                        for infected in self.population:
+                            if infected.infection != None and infection.is_alive == True:
+                                interaction = 0
+                                if survived_infection:
+                                    self.logger.log_infection_survival()
+        pass
+>>>>>>> d04cdf4991ef2f6cf12c0efebc602f5cb3de2e1b
+>>>>>>> fdf6de823545830749567d488ad702f30dfcdc6d
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an

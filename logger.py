@@ -49,21 +49,21 @@ class Logger(object):
         if random_person_sick == True and person.infection == None and person.is_vaccinated == False:
             print("{0} infects {1}".format(random_person.id, person.id))
             did_infect = True
-            log_file = open("log.txt", "a")
+            log_file = open("self.file_name", "a")
             log_file.write("{0} infects {1}".format(random_person.id, person.id))
             person.infection = True
 
         if random_person_sick == True and person.infection == None and person.is_vaccinated == True:
             print("{0} cannot be infected, they are vaccinated.".format(person.id))
             did_infect = False
-            log_file = open("log.txt", "a")
+            log_file = open("self.file_name", "a")
             log_file.write("{0} cannot be infected, they are vaccinated.".format(person.id))
             person.infection = False
             
         if random_person_sick == True and person.infection != None:
            print("{0} is already infected!".format(person.id))
            did_infect = False
-           log_file = open("log.txt", "a")
+           log_file = open("self.file_name", "a")
            log_file.write("{0} is already infected!".format(person.id))
            log_file.close()
 
